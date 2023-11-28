@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Search and Sort</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <style>
+        /* Add some basic styling if needed */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Array Manipulator</h1>
+
+    <div>
+        <label for="arrayInput">Array:</label>
+        <input type="text" id="arrayInput" placeholder="Enter numbers separated by commas">
+        <button onclick="processArray()">Process Array</button>
+    </div>
+
+    <div id="output"></div>
+
+    <script>
+        function processArray() {
+            // Clear previous results
+            $('#output').empty();
+
+            // Get the input array as a string
+            let inputArrayString = $('#arrayInput').val();
+
+            // Convert the string to an array of numbers
+            let inputArray = inputArrayString.split(',').map(Number);
+
+            // Display the original array
+            displayOutput("Original Array: " + inputArray.join(', '));
+
+            // Sort the array
+            let sortedArray = inputArray.slice().sort(function (a, b) {
+                return a - b;
+            });
+            displayOutput("Sorted Array: " + sortedArray.join(', '));
+
+            // Search for an element in the array
+            let searchValue = 8;
+            let foundIndex = inputArray.indexOf(searchValue);
+
+            if (foundIndex !== -1) {
+                displayOutput(`Element ${searchValue} found at index ${foundIndex}.`);
+            } else {
+                displayOutput(`Element ${searchValue} not found in the array.`);
+            }
+
+            // Use jQuery to change properties of the array (e.g., multiplying each element by 2)
+            let modifiedArray = inputArray.slice();
+            $.each(modifiedArray, function (index, value) {
+                modifiedArray[index] = value * 2;
+            });
+
+            // Display the modified array
+            displayOutput("Modified Array (each element multiplied by 2): " + modifiedArray.join(', '));
+        }
+
+        function displayOutput(message) {
+            // Append the output message to the output div
+            $('#output').append('<p>' + message + '</p>');
+        }
+    </script>
+
+</body>
+</html>
