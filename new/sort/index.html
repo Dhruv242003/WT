@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        select {
+            width: 200px;
+        }
+        .sorted-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 200px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sort</h1>
+    
+    <input type="number" id="number-input" placeholder="Enter a number">
+    <button id="add-button">Add Number</button>
+    
+    <select id="number-select">
+        <option value="5">5</option>
+        <option value="2">2</option>
+        <option value="8">8</option>
+        <option value="1">1</option>
+        <option value="7">7</option>
+    </select>
+    
+    <button id="sort-button">Sort Options</button>
+    
+    <div class="sorted-box" id="sorted-container">
+        Sorted Numbers:
+    </div>
+    
+    <script>
+        $(document).ready(function() {
+            $("#add-button").click(function() {
+                var numberInput = $("#number-input");
+                var number = parseInt(numberInput.val());
+                if (!isNaN(number)) {
+                    var select = $("#number-select");
+                    select.append("<option value='" + number + "'>" + number + "</option>");
+                    numberInput.val(""); // Clear the input field after adding
+                }
+            });
+            
+            $("#sort-button").click(function() {
+                var select = $("#number-select");
+                var options = select.find("option");
+                options.sort(function(a, b) {
+                    return parseInt(a.value) - parseInt(b.value);
+                });
+                select.empty();
+                options.each(function() {
+                    select.append(this);
+                });
+
+                var sortedNumbers = options.map(function() {
+                    return $(this).text();
+                }).get().join(", ");
+
+                $("#sorted-container").text("Sorted Numbers: " + sortedNumbers);
+            });
+        });
+    </script>
+</body>
+</html>

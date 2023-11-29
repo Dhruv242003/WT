@@ -1,0 +1,8 @@
+/* ShopBook.css */
+
+/* Your other CSS styles */
+.image-text {
+  font-family: Georgia, Palatino, "Book Antiqua", "Palatino Linotype", serif;
+  color: rgb(14, 52, 90); /* Set the text color to the specified RGB value */
+  /* Additional styles for the text, if needed */
+}

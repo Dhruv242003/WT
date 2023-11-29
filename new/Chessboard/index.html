@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #chessboard {
+        display: flex;
+        flex-direction: column;
+        max-width: 90vw; /* Set maximum width */
+        max-height: 90vh; /* Set maximum height */
+        width: 90vw;
+        height: 90vh;
+        border: 2px solid black; /* Just for visualization */
+      }
+
+      .cellContainer {
+        display: flex;
+        flex: 1;
+      }
+
+      .cell {
+        flex: 1; /* Fill available space equally */
+        aspect-ratio: 1; /* Maintain square shape */
+        border: 1px solid black;
+      }
+
+      @media screen and (max-width: 90vw) and (max-height: 90vh) {
+        /* Adjust styles for smaller screens */
+        #chessboard {
+          max-width: 80vw;
+          max-height: 80vw;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="chessboard"></div>
+    <script src="chessboard.js"></script>
+  </body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Copy Contents Between Lists</title>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <style>
+    /* Some basic styling for better UI */
+    .list-container {
+      display: inline-block;
+      vertical-align: top;
+      margin: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      width: 200px;
+    }
+    button {
+      display: block;
+      margin-top: 10px;
+    }
+    .selected {
+      background-color: #eee;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="list-container">
+      <h2>List A</h2>
+      <input type="text" id="inputA" placeholder="Enter text">
+      <button onclick="addItem('inputA', 'listA')">Add to List A</button>
+      <ul id="listA" onclick="selectItem('listA')"></ul>
+    </div>
+
+    <div class="list-container">
+      <h2>List B</h2>
+      <input type="text" id="inputB" placeholder="Enter text">
+      <button onclick="addItem('inputB', 'listB')">Add to List B</button>
+      <ul id="listB" onclick="selectItem('listB')"></ul>
+    </div>
+  </div>
+
+  <button onclick="transferItem('listA', 'listB')">Transfer to List B</button>
+  <button onclick="transferItem('listB', 'listA')">Transfer to List A</button>
+
+  <script>
+    function addItem(inputId, listId) {
+      var inputText = $("#" + inputId).val();
+      if (inputText.trim() !== "") {
+        // Create a new list item
+        var listItem = $("<li>").text(inputText);
+
+        // Append the new item to the specified list
+        $("#" + listId).append(listItem);
+
+        // Clear the input field
+        $("#" + inputId).val("");
+      }
+    }
+
+    function selectItem(listId) {
+      $("#" + listId + " li").click(function() {
+        $(this).toggleClass("selected");
+      });
+    }
+
+    function transferItem(sourceListId, targetListId) {
+      var selectedItems = $("#" + sourceListId + " li.selected").detach();
+      $("#" + targetListId).append(selectedItems);
+    }
+    
+  </script>
+
+</body>
+</html>
+

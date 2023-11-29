@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Basic Tab Switching</title>
+  </head>
+  <body>
+    <ul id="projectTabs">
+      <li><a href="#sdp">SDP</a></li>
+      <li><a href="#edi">EDI</a></li>
+      <li><a href="#dt">Design Thinking</a></li>
+      <li><a href="#course">Course Projects</a></li>
+    </ul>
+
+    <div id="sdp" class="tab-content">Software Development Projects</div>
+    <div id="edi" class="tab-content">Engineering Design and Innovation</div>
+    <div id="dt" class="tab-content">Design Thinking Projects</div>
+    <div id="course" class="tab-content">Course Projects</div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(function () {
+        $("#projectTabs a").click(function (e) {
+          e.preventDefault();
+          $($(this).attr("href")).show().siblings(".tab-content").hide();
+        });
+      });
+    </script>
+  </body>
+</html>
