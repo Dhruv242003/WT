@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Number List Copy</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        #list1 {
+            background-color: #e0f7fa;
+        }
+
+        #list2 {
+            background-color: #c8e6c9;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>List 1</h2>
+    <ul id="list1">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+
+    <h2>List 2</h2>
+    <ul id="list2">
+        <!-- This list will be populated dynamically using jQuery -->
+    </ul>
+
+    <script>
+        $(document).ready(function () {
+            // Click event handler for items in List 1
+            $('#list1 li').click(function () {
+                // Get the text content of the clicked item (assuming it's a number)
+                var number = $(this).text();
+
+                // Create a new list item with the number and append it to List 2
+                var clonedItem = $('<li>').text(number);
+                $('#list2').append(clonedItem);
+            });
+        });
+    </script>
+
+</body>
+</html>
